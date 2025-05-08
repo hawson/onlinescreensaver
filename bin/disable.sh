@@ -5,24 +5,25 @@ cd "$(dirname "$0")"
 
 # load configuration
 if [ -e "config.sh" ]; then
-	source ./config.sh
+    source ./config.sh
 fi
 
 # load utils
 if [ -e "utils.sh" ]; then
-	source ./utils.sh
+    source ./utils.sh
 else
-	echo "Could not find utils.sh in `pwd`"
-	exit
+    echo "Could not find utils.sh in `pwd`"
+    exit
 fi
 
 # forever and ever, try to update the screensaver
 logger "Disabling online screensaver auto-update"
 
 #stop onlinescreensaver || true      
-PID=`ps xa | grep "/bin/sh /mnt/base-us/extensions/onlinescreensaver/bin/scheduler.sh" | awk '{ print $1 }'`
+#PID=`ps xa | grep "/bin/sh /mnt/base-us/extensions/onlinescreensaver/bin/scheduler.sh" | awk '{ print $1 }'`
+PID=$(pgrep -f onlinescreensaver/bin/scheduler.sh)
 logger "killing scheduler process: $PID"
-kill $PID || true
+kill "$PID" || true
 
 #lipc-set-prop com.lab126.cmd wirelessEnable 1
 rm /mnt/us/extensions/onlinescreensaver/enabled
