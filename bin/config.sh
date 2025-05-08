@@ -37,7 +37,7 @@ SCHEDULE="00:00-06:00=240 06:00-23:00=30 23:00-24:00=240"
 IMAGE_URI=""
 
 # folder that holds the screensavers
-SCREENSAVERFOLDER=/mnt/us/linkss/screensavers/
+SCREENSAVERFOLDER=/mnt/us/linkss/screensavers
 
 # In which file to store the downloaded image. Make sure this is a valid
 # screensaver file. E.g. check the current screensaver folder to see what
@@ -51,6 +51,10 @@ LOGGING=1
 # file path (beware that this may grow large over time!)
 #LOGFILE=/dev/stderr
 LOGFILE=/tmp/onlinescreensaver.log
+
+# Force a screen update, even when not in screensaver mode, for testing.
+# Set to 1 to enable, anything else to disable
+FORCE_UPDATE=1
 
 # whether to disable WiFi after the script has finished (if WiFi was off
 # when the script started, it will always turn it off)
