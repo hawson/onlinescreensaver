@@ -120,8 +120,11 @@ extend_schedule
 
 # forever and ever, try to update the screensaver
 while [ 1 -eq 1 ]; do 
+
     sh ./update.sh
     
     # wait for the next trigger time
+    # Resource config.sh, as the schedule may have changed
+    source ./config.sh
     wait_for $(( 60 * $(get_time_to_next_update) ))
 done
